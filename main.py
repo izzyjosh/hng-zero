@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 from utils import me, detailed_response
 import uvicorn
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 
 app = FastAPI()
 
@@ -11,4 +16,5 @@ async def get_profile():
 
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", reload=True)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run( "main:app", port=port, reload=True)
